@@ -1,0 +1,54 @@
+{   "Name": "Coder",
+    "Description" : "A simple app to help you learn programming languages",
+    "Image" : "coder.png",
+    "Enabled" : true,
+    "GlobalID" : "ai.zambezi.coder",
+    "Widgets" : [   
+                    {"type" : "Label", "Title":"Programming Language:"}, 
+                    {"type": "Text", "Title" : "", "Memory" : "MemLang"},
+                    {"type" : "Label", "Title":"Your Question:"},
+                    {"type": "Text", "primary" : true},
+                    {"type" : "Button", "Title" : "Ask Question", "Action" : "submit"}],
+    "Memory" : [{"name" : "MemLang"},
+                {"name" : "ConfusionLevel"},
+                {"name" : "Interests"},
+                {"name" : "UserSkillLevel", 
+                 "Size" : 10,
+                 "Overflow": "truncate"},
+                {"name" : "PromptImprovementPrepend"},
+                {"name" : "PromptImprovementAppend"}],
+    "Goals" : [ 
+                {   "name" : "goal1",
+                    "description" : "Solve User Problem"}
+            ],
+    "Before-Submit": [
+                    {"if-is-set" : "$MemLang",
+                    "prepend-prompt" : "The programming language being spoken about is $MemLang."
+                     },
+                    {"if-is-set" : "$UserSkillLevel",
+                    "prepend-prompt" : "The user skill level is $UserSkillLevel"
+                    },
+                    {"if-is-set" : "$PromptImprovementPrepend",
+                    "prepend-prompt" : "$PromptImprovementPrepend"
+                    },
+                    {"if-is-set" : "$PromptImprovementAppend",
+                    "append-prompt" : "$PromptImprovementAppend"
+                    }
+                    ],
+    "After-Submit": [
+                    {"query-run" : "Based on the question asked, what do you think the User skill level is? Give a number between 1 and 10 as your reply only.",
+                     "put-answer-in-memory" : "$UserSkillLevel"
+                    },
+                    {"query-run" : "Based on the questions asked by the user, what do you think the User confusion level is? Give a number between 1 and 10 as your reply only.",
+                     "put-answer-in-memory" : "$ConfusionLevel"
+                    }],
+    "When-Result": [ {"query-run" : "Based on the interaction so far, what prompt would you prepend to the next question? The goal is to $goal1. The current prepend is '$PromptImprovementPrepend', only provide an answer that is likely to give a better result than this existing prompt. Give a short sentence as your reply only.",
+                    "put-answer-in-memory" : "$PromptImprovementPrepend"
+                    },
+                    {"query-run" : "Based on the interaction so far, what prompt would you append to the next question? The goal is to $goal1. The current prompt append is '$PromptImprovementAppend', only provide an answer that is likely to give a better result than this existing prompt. Give a short sentence as your reply only.",
+                    "put-answer-in-memory" : "$PromptImprovementAppend"
+                    }],
+    "When-Idle": [{"query-run" : "Which programming languages do you have interest in?",
+                   "put-answer-in-memory" : "$Interests"},
+                  {"include" : "ai.zambezi.coder.library.when-idle"}]
+}

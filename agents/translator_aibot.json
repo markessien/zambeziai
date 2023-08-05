@@ -1,0 +1,8 @@
+{   "Name": "Translator",
+    "Description" : "A simple app to help you learn programming languages",
+    "Image" : "translator.png",
+    "Enabled" : true,
+    "GlobalID" : "ai.zambezi.translator",
+    "Widgets" : [   {"type" : "Text", "Title":"Programming Language"},  
+                    {"type": "Text", "Title" : "Questions"}]
+}

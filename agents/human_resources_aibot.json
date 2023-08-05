@@ -1,0 +1,8 @@
+{   "Name": "Human Resources",
+    "Description" : "A simple app to help you learn programming languages",
+    "Image" : "humanresources.png",
+    "Enabled" : true,
+    "GlobalID" : "ai.zambezi.hr",
+    "Widgets" : [   {"type" : "Text", "Title":"Programming Language"},  
+                    {"type": "Text", "Title" : "Questions"}]
+}

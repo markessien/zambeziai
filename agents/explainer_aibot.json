@@ -1,0 +1,43 @@
+{   "Name": "Explainer",
+    "Description" : "A bot that explains things well",
+    "Image" : "explainer.png",
+    "Interpreter" : "zam-0.1",
+    "Enabled" : true,
+    "GlobalID" : "ai.zambezi.explainer",
+    "Widgets" : [   {"type" : "Label", "Title":"Complexity:"},  
+                    {"type" : "Dropdown", 
+                     "Text" : ["I have no idea", "I know a bit on the topic", "I am an expert"],
+                     "Values" : ["Explain like I am an absolute beginner", 
+                                 "Explain like I am intermediate", 
+                                 "Explain like I am an topic expert"],
+                     "Memory" : "Level"},
+
+                    {"type" : "ChatHistory"},
+                    {"type" : "Suggestions", "Action" : "submit", "Memory" : "Suggestions"},
+                    {"type" : "ChatEntry", "Memory" : "ChatEntry"},
+                    {"type" : "Button", "Title" : "Explain to me", "Action" : "submit"}
+                ],
+    "Memory" : [{"name" : "Level"},
+                {"name" : "ChatInput"},
+                {"name" : "UserUnderstanding"},
+                {"name" : "Suggestions"},
+                {"name" : "MoreInfoLink"}
+                ],
+    "Goals" : [ 
+                {   "name" : "goal1",
+                    "description" : "Explain to the user in clear terms what the answer to his question is."}
+              ],
+    "Before-Submit": [
+                {"if-is-set" : "$Level",
+                "prepend-prompt" : "When replying, please consider to $Level."
+                 }
+                ],
+
+    "When-Result": [ 
+                {
+                    "if-chain-level-is-equal" : "0",
+                    "run-query" : "Based on the text above this, provide a list of three prompts that will help the user gain deeper and more complex insight into the last question. Your answer must be limited to three suggestions, each of which has a maximum of five words only. Do not write anything else except the three prompts.",
+                    "put-answer-in-memory" : "$Suggestions",
+                    "chain-level" : "1" 
+                }]
+}

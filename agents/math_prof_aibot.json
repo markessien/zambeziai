@@ -1,0 +1,8 @@
+{   "Name": "Math Prof",
+    "Description" : "A simple app to help you learn programming languages",
+    "Image" : "mathprof.png",
+    "Enabled" : true,
+    "GlobalID" : "ai.zambezi.mathprof",
+    "Widgets" : [   {"type" : "Text", "Title":"Programming Language"},  
+                    {"type": "Text", "Title" : "Questions"}]
+}

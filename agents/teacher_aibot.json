@@ -1,0 +1,8 @@
+{   "Name": "Teacher",
+    "Description" : "A simple app to help you learn programming languages",
+    "Image" : "teacher.png",
+    "Enabled" : true,
+    "GlobalID" : "ai.zambezi.teacher",
+    "Widgets" : [   {"type" : "Text", "Title":"Programming Language"},  
+                    {"type": "Text", "Title" : "Questions"}]
+}

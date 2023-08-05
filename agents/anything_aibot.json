@@ -1,0 +1,14 @@
+{   "Name": "Anything",
+    "Description" : "A simple app to help you learn programming languages",
+    "Image" : "anything.png",
+    "GlobalID" : "ai.zambezi.anything",
+    "Enabled" : true,
+    "Widgets" : [{"type" : "Box", 
+                  "contents" : [ 
+                        {"type" : "Label", "Title":"Anything Bot"},
+                        {"type" : "ChatHistory", "Title":"What's your question?"},
+                        {"type" : "ChatEntry", "Memory" : "ChatEntry"},
+                        {"type" : "Button", "Title" : "Ask Question", "Action" : "submit"}
+                    ]
+                }]
+}
